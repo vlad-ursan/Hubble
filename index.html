@@ -28,12 +28,21 @@
 <!-- Router -->
 <script type="application/javascript" src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
 
+
+
 <!--Application-->
 <script type="application/javascript" src="app.js"></script>
 
+<!--Services-->
+<script type="application/javascript" src="services/d3-service.js"></script>
+
+<!--App Components-->
+<script type="application/javascript" src="components/main/main.js"></script>
+
 <div id="appShell" layout="row" class="layout-expand">
     <div layout="column" flex>
-        Hello App
+        <md-toolbar></md-toolbar>
+        <div ui-view></div>
     </div>
 </div>
 
