@@ -1,0 +1,17 @@
+{
+  "name": "dataviz",
+  "version": "0.0.1",
+  "description": "A data visualization application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vlad.ursan92@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.15",
+    "angular": "^1.6.9",
+    "angular-material": "^1.1.7",
+    "d3": "^4.13.0"
+  }
+}
