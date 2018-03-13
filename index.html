@@ -29,7 +29,6 @@
 <script type="application/javascript" src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
 
 
-
 <!--Application-------------------------------------------------------------------------------------------------------->
 <script type="application/javascript" src="app.js"></script>
 
@@ -43,11 +42,9 @@
 <!--Toolbar-->
 <script type="application/javascript" src="components/toolbar/toolbar.js"></script>
 
-<div id="appShell" layout="row" class="layout-expand">
-    <div layout="column" flex>
-        <toolbar></toolbar>
-        <div ui-view></div>
-    </div>
+<div id="appShell" layout="column" flex>
+    <toolbar></toolbar>
+    <div id="viewContainer" ui-view></div>
 </div>
 
 </body>

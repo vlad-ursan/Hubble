@@ -1,0 +1,20 @@
+<md-content layout="row" layout-align="center center" class="md-padding">
+    <div id="gridListContainer">
+        <md-grid-list
+                md-cols="{{$ctrl.gridConfig.cols}}"
+                md-cols-sm="1"
+                md-cols-xs="1"
+                md-gutter="12px"
+                md-row-height="{{$ctrl.gridConfig.rowHeight}}">
+            <md-grid-tile
+                    ng-repeat="tile in $ctrl.navOptions"
+                    ng-style="{background: tile.color}"
+                    ui-sref="{{tile.sref}}">
+                <md-icon class="material-icons">{{tile.icon}}</md-icon>
+                <md-grid-tile-footer layout="row" layout-align="center center">
+                    <span>{{tile.title}}</span>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+</md-content>

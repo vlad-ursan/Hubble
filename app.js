@@ -35,13 +35,26 @@
         .config(['$stateProvider',
             '$urlRouterProvider',
             function ($stateProvider, $urlRouterProvider) {
-            // Configuration of URL routes
+                // Configuration of URL routes
                 $urlRouterProvider.otherwise("/login");
 
-                $stateProvider.state('main', {
-                    url: '/',
-                    component: 'main'
-                })
+                $stateProvider
+                    .state('main', {
+                        url: '/',
+                        component: 'main'
+                    })
+                    .state('flight_data', {
+                        url: '/flight-data',
+                        component: ''
+                    })
+                    .state('daily_energy', {
+                        url: '/daily-energy',
+                        component: ''
+                    })
+                    .state('council_spending', {
+                        url: '/council-spending',
+                        component: ''
+                    })
             }
         ])
 })(angular);

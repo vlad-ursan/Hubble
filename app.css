@@ -4,7 +4,12 @@
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: local('Material Icons'), local('MaterialIcons-Regular'), url(/fonts/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+    src: url(/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(/fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(/fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
@@ -31,6 +36,7 @@
     src: local('Roboto'), local('Roboto-Regular'), url(/fonts/Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
+
 /* latin */
 @font-face {
     font-family: 'Roboto';
@@ -48,6 +54,7 @@
     src: local('Roboto Light'), local('Roboto-Light'), url(/fonts/Pru33qjShpZSmG3z6VYwnYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
+
 /* latin */
 @font-face {
     font-family: 'Roboto';
@@ -65,6 +72,7 @@
     src: local('Roboto'), local('Roboto-Regular'), url(/fonts/Ks_cVxiCiwUWVsFWFA3Bjn-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
+
 /* latin */
 @font-face {
     font-family: 'Roboto';
@@ -82,6 +90,7 @@
     src: local('Roboto Medium'), local('Roboto-Medium'), url(/fonts/oOeFwZNlrTefzLYmlVV1UIX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
+
 /* latin */
 @font-face {
     font-family: 'Roboto';
@@ -99,6 +108,7 @@
     src: local('Roboto Bold'), local('Roboto-Bold'), url(/fonts/97uahxiqZRoncBaCEI3aW4X0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
+
 /* latin */
 @font-face {
     font-family: 'Roboto';
@@ -109,3 +119,30 @@
 }
 
 /* Material Fonts End **************************************************************************************************/
+
+#appShell {
+    height: 100%;
+}
+
+#viewContainer {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.md-toolbar-tools h1{
+    cursor: pointer;
+}
+
+md-grid-tile{
+    cursor: pointer;
+}
+
+md-grid-tile md-icon.material-icons{
+    font-size:100px;
+    width:100px;
+    height:100px;
+}
+
+#gridListContainer{
+    width: 50%
+}
