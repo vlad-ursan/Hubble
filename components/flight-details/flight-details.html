@@ -16,14 +16,14 @@
                     <md-slider-container>
                         <md-input-container>
                             <input type="number"
-                                   ng-model="topAirlines"
-                                   ng-change="$ctrl.limitAirlines(topAirlines)"
+                                   ng-model="$ctrl.controls.topAirlines"
+                                   ng-change="$ctrl.limitAirlines($ctrl.controls.topAirlines)"
                                    aria-label="top airlines control">
                         </md-input-container>
                         <md-slider flex min="1" md-discrete="" md-vertical=""
                                    max="{{$ctrl.flightCountsData.length}}"
-                                   ng-model="topAirlines"
-                                   ng-change="$ctrl.limitAirlines(topAirlines)"
+                                   ng-model="$ctrl.controls.topAirlines"
+                                   ng-change="$ctrl.limitAirlines($ctrl.controls.topAirlines)"
                                    aria-label="counts slider"
                         id="airlineCountsSlider"></md-slider>
                         <h5>Top # Airlines</h5>

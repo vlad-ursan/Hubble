@@ -44,7 +44,11 @@
                         component: 'main'
                     })
                     .state('flight_data', {
-                        url: '/flight-data',
+                        url: '/flight-data?limitAirlines&noOfFlights',
+                        params: {
+                            limitAirlines: null,
+                            noOfFlights: null
+                        },
                         component: 'flightDetails'
                     })
                     .state('daily_energy', {

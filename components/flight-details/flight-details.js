@@ -5,17 +5,51 @@
  *
  * @description A component which renders the flight information analytics view
  */
+// This d3.loaded wrapper exists here because we are using the d3 based data-service; It will be removed when
+
 (function (angular) {
-    function FlightDetailsController(d3Service, dataService) {
+
+    function FlightDetailsController(d3Service, dataService, $state, $stateParams) {
         var ctrl = this;
         ctrl.flightCountsData = null;
         ctrl.dataReady = false;
-
         // An object where the controls for the charts are stored.
         ctrl.controls = {
-            noOfFlights: null,
-            topAirlines: null
+            noOfFlights: $stateParams.noOfFlights,
+            topAirlines: parseInt($stateParams.limitAirlines)
         };
+
+        /**
+         * @ngdoc function
+         * @name limitAirlines
+         * @param limit A number to limit the array of airlines
+         * @description A function which slices the already sorted array of airlines, eliminating the ones with
+         * too few flights
+         */
+        ctrl.limitAirlines = function (limit) {
+            ctrl.flightCountsChartData = ctrl.flightCountsData.slice(0,limit)
+        };
+
+        /**
+         * @ngdoc function
+         * @name checkStateParams
+         * @description Check the current URL query params for values which could be used to preset the controls for the
+         * charts
+         */
+        function checkStateParams(){
+            // More work needs to be done here, but leaving this for now in the interest of time
+            if($stateParams.limitAirlines !== null){
+                ctrl.limitAirlines(ctrl.controls.topAirlines)
+            }
+
+            if($stateParams.noOfFlights !== null){
+                console.log('hello')
+            }
+
+            if($stateParams.limitAirlines === null && $stateParams.noOfFlights === null){
+                ctrl.flightCountsChartData = angular.copy(ctrl.flightCountsData);
+            }
+        }
 
 
         /**
@@ -65,28 +99,17 @@
             return data
         }
 
-        // This d3.loaded wrapper exists here because we are using the d3 based data-service; It will be removed when
         // data will be fetched from an API.
         d3Service.loaded().then(function () {
                 dataService.getFlightData().then(
                     function (s) {
                         ctrl.flightCountsData = sortData(generateAirlineFlightCounts(s.data));
-                        ctrl.flightCountsChartData = angular.copy(ctrl.flightCountsData);
+                        checkStateParams();
                         ctrl.dataReady = true;
                     }
                 )
             }
         );
-
-        /**
-         * @ngdoc function
-         * @name limitAirlines
-         * @param limit A number to limit the
-         * @description A function which us
-         */
-        ctrl.limitAirlines = function (limit) {
-            ctrl.flightCountsChartData = ctrl.flightCountsData.slice(0,limit)
-        }
 
     }
 
