@@ -47,10 +47,10 @@
             // group all chart components inside a <g> element
             ctrl.g = ctrl.chartWrapper.append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+            // initialize the scale of the x axis
             ctrl.x = d3.scaleTime()
                 .rangeRound([0, width]);
-
+            // initialize the scale of the y axis
             ctrl.y = d3.scaleLinear()
                 .rangeRound([height, 0]);
 
@@ -84,7 +84,7 @@
             ctrl.g.append("path")
                 .datum(data)
                 .attr("fill", "none")
-                .attr("stroke", "steelblue")
+                .attr("stroke", "rgb(76, 175, 80)")
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
                 .attr("stroke-width", 1.5)

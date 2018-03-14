@@ -11,7 +11,7 @@
         </md-card>
     </div>
     <div class="controls-row">
-        <md-card flex="50">
+        <md-card flex="20">
             <md-content style="background: white" layout="column" class="md-padding">
                 <span>Bar chart controls</span>
                 <div layout="row">
@@ -35,11 +35,13 @@
                         <md-input-container>
                             <input type="number"
                                    ng-model="$ctrl.controls.noOfFlights"
+                                   ng-change="$ctrl.limitNoOfFlights($ctrl.controls.noOfFlights)"
                                    aria-label="flights number control">
                         </md-input-container>
                         <md-slider flex min="1" md-discrete="" md-vertical=""
-                                   max="{{$ctrl.flightCountsData.length}}"
+                                   max="{{$ctrl.maxNoOfFlights}}"
                                    ng-model="$ctrl.controls.noOfFlights"
+                                   ng-change="$ctrl.limitNoOfFlights($ctrl.controls.noOfFlights)"
                                    aria-label="counts slider"
                         id="flightsCountsSlider"></md-slider>
                         <h5>Min No. of flights</h5>

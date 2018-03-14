@@ -11,6 +11,8 @@
         var ctrl = this;
         ctrl.flightCountsData = null;
         ctrl.dataReady = false;
+        ctrl.maxNoOfFlights = 0;
+
         // An object where the controls for the charts are stored.
         ctrl.controls = {
             noOfFlights: $stateParams.noOfFlights,
@@ -28,6 +30,17 @@
             ctrl.flightCountsChartData = ctrl.flightCountsData.slice(0,limit)
         };
 
+        ctrl.limitNoOfFlights = function (limit) {
+            var idx = 0;
+            for(var i = 0; i < ctrl.flightCountsData.length; i++) {
+                if(ctrl.flightCountsData[i].count <= limit){
+                    idx = i;
+                    break;
+                }
+            }
+            ctrl.flightCountsChartData = ctrl.flightCountsData.slice(0,idx)
+        };
+
         /**
          * @ngdoc function
          * @name checkStateParams
@@ -41,7 +54,7 @@
             }
 
             if($stateParams.noOfFlights !== null){
-                console.log('hello')
+                console.log('coming soon')
             }
 
             if($stateParams.limitAirlines === null && $stateParams.noOfFlights === null){
@@ -103,6 +116,7 @@
             dataService.getFlightData().then(
                     function (s) {
                         ctrl.flightCountsData = sortData(generateAirlineFlightCounts(s.data));
+                        ctrl.maxNoOfFlights = ctrl.flightCountsData[0].count;
                         checkStateParams();
                         ctrl.dataReady = true;
                     }
