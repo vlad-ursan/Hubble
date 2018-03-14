@@ -5,8 +5,6 @@
  *
  * @description A component which renders the flight information analytics view
  */
-// This d3.loaded wrapper exists here because we are using the d3 based data-service; It will be removed when
-
 (function (angular) {
 
     function FlightDetailsController(d3Service, dataService, $state, $stateParams) {
@@ -99,9 +97,10 @@
             return data
         }
 
-        // data will be fetched from an API.
         d3Service.loaded().then(function () {
-                dataService.getFlightData().then(
+            // This d3.loaded wrapper exists here because we are using the d3 based data-service; It will be removed
+            // when data will be fetched from an API.
+            dataService.getFlightData().then(
                     function (s) {
                         ctrl.flightCountsData = sortData(generateAirlineFlightCounts(s.data));
                         checkStateParams();

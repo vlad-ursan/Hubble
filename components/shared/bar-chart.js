@@ -1,15 +1,14 @@
 /**
  * @ngdoc component
  * @module app
- * @name flightDetailsChart
- * @param data: a csv derived array data object.
- * @param config: a d3 configuration object.
- * @description A component which is responsible for rendering the fight information chart.
+ * @name barChart
+ * @param data: a csv derived array data object in the format[{item: string, count: number}].
+ * @description A component which is responsible for rendering a simple bar chart.
  */
 (function (angular) {
     'use strict';
 
-    function FlightDetailsController($element) {
+    function BarChartController($element) {
         var ctrl = this;
         ctrl.wrapper = $element[0];
 
@@ -119,11 +118,11 @@
     }
 
     angular.module('app')
-        .component('flightDetailsChart', {
-            templateUrl: '/components/flight-details/flight-details-chart.html',
+        .component('barChart', {
+            templateUrl: '/components/shared/bar-chart.html',
             bindings: {
                 data: '<'
             },
-            controller: FlightDetailsController
+            controller: BarChartController
         })
 })(angular);
