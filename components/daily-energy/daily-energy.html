@@ -1,0 +1,13 @@
+<md-content layout="column">
+    <div class="charts-row" layout="row">
+        <md-card flex="50">
+            <md-card-header>
+                <h2 class="md-head">Daily Energy Generation from Solar Panels (KWh)</h2>
+            </md-card-header>
+            <line-chart ng-if="$ctrl.dataReady" data="$ctrl.flightCountsChartData"></line-chart>
+        </md-card>
+        <md-card flex="50" layout="column" layout-align="center center">
+            <span>More charts coming soon</span>
+        </md-card>
+    </div>
+</md-content>

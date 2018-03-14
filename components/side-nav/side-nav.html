@@ -1,0 +1,27 @@
+<md-sidenav
+        class="md-sidenav-right"
+        md-component-id="right"
+        md-whiteframe="2">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button ng-click="$ctrl.close()" class="md-icon-button">
+                <md-icon class="material-icons">arrow_forward</md-icon>
+            </md-button>
+            <span flex=""></span>
+            <h1 class="md-toolbar-tools">Navigation</h1>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+        <md-list class="md-dense">
+            <md-list-item class="md-clickable" ui-sref="main">
+                <md-icon class="material-icons">home</md-icon>
+                <p>Home</p>
+            </md-list-item>
+            <md-list-item ng-repeat="navItem in $ctrl.navItems" class="md-clickable" ui-sref="{{navItem.sref}}">
+                <md-icon class="material-icons">{{navItem.icon}}</md-icon>
+                <p>{{navItem.title}}</p>
+            </md-list-item>
+        </md-list>
+    </md-content>
+
+</md-sidenav>

@@ -13,7 +13,8 @@
     angular.module('app', [
         'ui.router',
         'ngMaterial',
-        'ngMessages'
+        'ngMessages',
+        'shared'
     ])
 
         .run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {

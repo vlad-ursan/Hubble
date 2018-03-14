@@ -1,6 +1,6 @@
 /**
  * @ngdoc component
- * @module app
+ * @module shared
  * @name barChart
  * @param data: a csv derived array data object in the format[{item: string, count: number}].
  * @description A component which is responsible for rendering a simple bar chart.
@@ -11,13 +11,6 @@
     function BarChartController($element) {
         var ctrl = this;
         ctrl.wrapper = $element[0];
-
-        ctrl.$onInit = function () {
-            //TODO remove this log before prod.
-            console.log(ctrl.data);
-        };
-
-
 
         ctrl.$onChanges = function (changes) {
             if (changes.hasOwnProperty('data') && changes.data.currentValue !== null){
@@ -117,9 +110,8 @@
 
     }
 
-    angular.module('app')
+    angular.module('shared')
         .component('barChart', {
-            templateUrl: '/components/shared/bar-chart.html',
             bindings: {
                 data: '<'
             },
