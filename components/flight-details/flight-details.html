@@ -1,0 +1,11 @@
+<md-content layout="column">
+    <div class="chart-row" layout="row">
+        <md-card flex="50">
+            <flight-details-chart ng-if="$ctrl.dataReady" data="$ctrl.flightData"
+                                  config="$ctrl.chartConfig"></flight-details-chart>
+        </md-card>
+        <md-card flex="50">
+
+        </md-card>
+    </div>
+</md-content>

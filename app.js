@@ -45,7 +45,7 @@
                     })
                     .state('flight_data', {
                         url: '/flight-data',
-                        component: ''
+                        component: 'flightDetails'
                     })
                     .state('daily_energy', {
                         url: '/daily-energy',

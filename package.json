@@ -16,6 +16,8 @@
     "angular-material": "^1.1.7",
     "angular-messages": "^1.6.9",
     "angular-sanitize": "^1.6.9",
-    "d3": "^4.13.0"
+    "d3": "^4.13.0",
+    "d3-format": "^1.2.2",
+    "d3-scale": "^2.0.0"
   }
 }

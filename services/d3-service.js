@@ -43,15 +43,16 @@
          * @function d3Service.appendD3
          * @description
          * Appends D3 script tag to the application when needed and listens for it to finish loading.
+         * EDIT (vursan): Edited the function to append local src files instead of http ones.
          */
         d3Service.appendD3 = function() {
 
             d3Service.d3Promise = $q.defer();
 
             var scriptTag = $document[0].createElement('script');
-            scriptTag.type = 'text/javascript';
+            scriptTag.type = 'application/javascript';
             scriptTag.async = true;
-            scriptTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js';
+            scriptTag.src = 'node_modules/d3/build/d3.js';
             scriptTag.onreadystatechange = function() {
                 if (this.readyState === 'complete')
                     d3Service.resolvePromise();

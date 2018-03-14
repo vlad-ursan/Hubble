@@ -146,3 +146,16 @@ md-grid-tile md-icon.material-icons{
 #gridListContainer{
     width: 50%
 }
+
+/*Bar Chart*/
+.bar {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+.axis--x path {
+    display: none;
+}
