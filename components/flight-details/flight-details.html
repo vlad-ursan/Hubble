@@ -1,11 +1,49 @@
 <md-content layout="column">
-    <div class="chart-row" layout="row">
+    <div class="charts-row" layout="row">
         <md-card flex="50">
-            <flight-details-chart ng-if="$ctrl.dataReady" data="$ctrl.flightData"
-                                  config="$ctrl.chartConfig"></flight-details-chart>
+            <md-card-header>
+                <h2 class="md-head">Number of UK flights in 2011 by Airline</h2>
+            </md-card-header>
+            <flight-details-chart ng-if="$ctrl.dataReady" data="$ctrl.flightCountsChartData"></flight-details-chart>
         </md-card>
+        <md-card flex="50"></md-card>
+    </div>
+    <div class="controls-row">
         <md-card flex="50">
+            <md-content style="background: white" layout="column" class="md-padding">
+                <span>Bar chart controls</span>
+                <div layout="row">
+                    <md-slider-container>
+                        <md-input-container>
+                            <input type="number"
+                                   ng-model="topAirlines"
+                                   ng-change="$ctrl.limitAirlines(topAirlines)"
+                                   aria-label="top airlines control">
+                        </md-input-container>
+                        <md-slider flex min="1" md-discrete="" md-vertical=""
+                                   max="{{$ctrl.flightCountsData.length}}"
+                                   ng-model="topAirlines"
+                                   ng-change="$ctrl.limitAirlines(topAirlines)"
+                                   aria-label="counts slider"
+                        id="airlineCountsSlider"></md-slider>
+                        <h5>Top # Airlines</h5>
+                    </md-slider-container>
 
+                    <md-slider-container>
+                        <md-input-container>
+                            <input type="number"
+                                   ng-model="$ctrl.controls.noOfFlights"
+                                   aria-label="flights number control">
+                        </md-input-container>
+                        <md-slider flex min="1" md-discrete="" md-vertical=""
+                                   max="{{$ctrl.flightCountsData.length}}"
+                                   ng-model="$ctrl.controls.noOfFlights"
+                                   aria-label="counts slider"
+                        id="flightsCountsSlider"></md-slider>
+                        <h5>Min No. of flights</h5>
+                    </md-slider-container>
+                </div>
+            </md-content>
         </md-card>
     </div>
 </md-content>

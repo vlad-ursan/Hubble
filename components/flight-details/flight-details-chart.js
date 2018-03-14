@@ -14,35 +14,35 @@
         ctrl.wrapper = $element[0];
 
         ctrl.$onInit = function () {
+            //TODO remove this log before prod.
             console.log(ctrl.data);
-            setUpChart()
         };
 
-        function parseData(data){
-            var countsObj = {};
-            angular.forEach(data, function (row) {
-                if(countsObj.hasOwnProperty(row.Supplier_name)){
-                    countsObj[row.Supplier_name] += 1;
-                }else{
-                    countsObj[row.Supplier_name] = 1
-                }
-            });
 
-            var counts = [];
-            angular.forEach(countsObj, function (value, key) {
-                counts.push({
-                    airline: key,
-                    count: value
-                })
-            });
 
-            return counts
-        }
+        ctrl.$onChanges = function (changes) {
+            if (changes.hasOwnProperty('data') && changes.data.currentValue !== null){
+                drawChart(changes.data.currentValue);
+            }
+        };
 
-        function setUpChart() {
+        /**
+         * @ngdoc function
+         * @name drawChart
+         * @description Set up and draw the chart
+         */
+        function drawChart(data) {
+
+            // Making sure the element we want to draw in is empty.
+            d3
+                .select(ctrl.wrapper)
+                .selectAll('*')
+                .remove();
+
             var defaultHeight = window.innerHeight / 2;
-            var defaultWidth = 0.9 * window.innerWidth / 2;
+            var defaultWidth = window.innerWidth / 2;
 
+            // initialize the dimensions of the chart.
             ctrl.chartWrapper = d3.select(ctrl.wrapper)
                 .append("svg")
 
@@ -53,33 +53,42 @@
             var width = defaultWidth - margin.left - margin.right;
             var height = defaultHeight - margin.top - margin.bottom;
 
-            var g = ctrl.chartWrapper.append("g")
+            // group all chart components inside a <g> element
+            ctrl.g = ctrl.chartWrapper.append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+            // set up the scale of the x axis
             ctrl.x = d3.scaleBand()
                 .rangeRound([0, width])
                 .padding(0.1);
 
+            // set up the scale of the y axis
             ctrl.y = d3.scaleLinear()
                 .rangeRound([height, 0]);
 
-            // ctrl.z = d3.scaleOrdinal()
-            //     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-            var data = parseData(ctrl.data);
-            ctrl.x.domain(data.map(function(d) { return d.airline; }));
-            ctrl.y.domain([0, d3.max(data, function(d) { return d.count; })]);
+            // set up the domain of the x axis
+            ctrl.x.domain(data.map(function (d) {
+                return d.airline;
+            }));
 
-            g.append("g")
+            // set up the domain of the y axis
+            ctrl.y.domain([0, d3.max(data, function (d) {
+                return d.count;
+            })]);
+
+            // draw the xAxis
+            ctrl.xAxis = ctrl.g.append("g")
                 .attr("class", "axis axis--x")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(ctrl.x))
                 .selectAll('text')
                 .attr("y", 0)
-                .attr("x", -90)
+                .attr("x", 90)
                 .attr("dy", ".35em")
                 .attr("transform", "rotate(-90)");
 
-            g.append("g")
+            // draw the y axis
+            ctrl.yAxis = ctrl.g.append("g")
                 .attr("class", "axis axis--y")
                 .call(d3.axisLeft(ctrl.y).ticks(10))
                 .append("text")
@@ -89,23 +98,31 @@
                 .attr("text-anchor", "end")
                 .text("Frequency");
 
-            g.selectAll(".bar")
+            // draw the bars of the chart
+            ctrl.bar = ctrl.g.selectAll(".bar")
                 .data(data)
                 .enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function(d) { return ctrl.x(d.airline); })
-                .attr("y", function(d) { return ctrl.y(d.count); })
+                .attr("x", function (d) {
+                    return ctrl.x(d.airline);
+                })
+                .attr("y", function (d) {
+                    return ctrl.y(d.count);
+                })
                 .attr("width", ctrl.x.bandwidth())
-                .attr("height", function(d) { return height - ctrl.y(d.count); });
+                .attr("height", function (d) {
+                    return height - ctrl.y(d.count);
+                })
+                .style('fill', 'rgba(3, 169, 244, 0.5)')
         }
+
     }
 
     angular.module('app')
         .component('flightDetailsChart', {
             templateUrl: '/components/flight-details/flight-details-chart.html',
             bindings: {
-                data: '<',
-                config: '<'
+                data: '<'
             },
             controller: FlightDetailsController
         })

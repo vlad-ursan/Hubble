@@ -1,5 +1,5 @@
 /**
- * @author Julian Deborré
+ * @author Julian Deborré (https://www.panaseer.com/2016/05/11/playing-nice-angular-d3-js/)
  * @ngdoc ngService
  * @name d3Service
  * @description
