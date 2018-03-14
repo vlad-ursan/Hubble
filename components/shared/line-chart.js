@@ -10,7 +10,7 @@
 
     function LineChartController($element) {
         var ctrl = this;
-        ctrl.chartWrapper = $element[0];
+        ctrl.wrapper = $element[0];
 
         ctrl.$onChanges = function (changes) {
             if (changes.hasOwnProperty('data') && changes.data.currentValue !== null) {
@@ -37,11 +37,10 @@
             // initialize the dimensions of the chart.
             ctrl.chartWrapper = d3.select(ctrl.wrapper)
                 .append("svg")
-
                 .attr('width', defaultWidth + 'px')
                 .attr('height', defaultHeight + 'px');
 
-            var margin = {top: 20, right: 0, bottom: 50, left: 40};
+            var margin = {top: 20, right: 20, bottom: 50, left: 40};
             var width = defaultWidth - margin.left - margin.right;
             var height = defaultHeight - margin.top - margin.bottom;
 
@@ -49,6 +48,47 @@
             ctrl.g = ctrl.chartWrapper.append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+            ctrl.x = d3.scaleTime()
+                .rangeRound([0, width]);
+
+            ctrl.y = d3.scaleLinear()
+                .rangeRound([height, 0]);
+
+            ctrl.line = d3.line()
+                .x(function(d) { return ctrl.x(d.Date); })
+                .y(function(d) { return ctrl.y(d.Output); });
+
+            ctrl.x.domain(d3.extent(data, function(d) { return d.Date; }));
+            ctrl.y.domain(d3.extent(data, function(d) { return d.Output; }));
+
+            ctrl.g.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(ctrl.x)
+                    .tickFormat(function (d) {
+                        var formatTime = d3.timeFormat("%B %d, %Y");
+                        return formatTime(d)
+                    }))
+                .select(".domain")
+                .remove();
+
+            ctrl.g.append("g")
+                .call(d3.axisLeft(ctrl.y))
+                .append("text")
+                .attr("fill", "#000")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("text-anchor", "end")
+                .text(ctrl.yUnit);
+
+            ctrl.g.append("path")
+                .datum(data)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .attr("stroke-width", 1.5)
+                .attr("d", ctrl.line);
 
         }
     }
@@ -56,7 +96,8 @@
     angular.module('shared')
         .component('lineChart', {
             bindings: {
-                data: '<'
+                data: '<',
+                yUnit: '@'
             },
             controller: LineChartController
         })

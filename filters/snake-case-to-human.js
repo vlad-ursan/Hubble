@@ -15,7 +15,6 @@
                 var resultArray = [];
                 var wordsArray = input.split('_');
                 angular.forEach(wordsArray, function (word) {
-                    console.log(input)
                     var newWord = word[0].toUpperCase() + word.slice(1,word.length);
                     resultArray.push(newWord)
                 });

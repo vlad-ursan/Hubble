@@ -4,7 +4,7 @@
             <md-card-header>
                 <h2 class="md-head">Daily Energy Generation from Solar Panels (KWh)</h2>
             </md-card-header>
-            <line-chart ng-if="$ctrl.dataReady" data="$ctrl.flightCountsChartData"></line-chart>
+            <line-chart ng-if="$ctrl.dataReady" y-unit="KWh" data="$ctrl.dailyEnergyChartData"></line-chart>
         </md-card>
         <md-card flex="50" layout="column" layout-align="center center">
             <span>More charts coming soon</span>

@@ -54,7 +54,7 @@
                     })
                     .state('daily_energy', {
                         url: '/daily-energy',
-                        component: ''
+                        component: 'dailyEnergy'
                     })
                     .state('council_spending', {
                         url: '/council-spending',

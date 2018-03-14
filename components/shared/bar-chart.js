@@ -88,7 +88,7 @@
                 .attr("y", 6)
                 .attr("dy", "0.71em")
                 .attr("text-anchor", "end")
-                .text("Frequency");
+                .text(ctrl.yUnit);
 
             // draw the bars of the chart
             ctrl.bar = ctrl.g.selectAll(".bar")
@@ -113,7 +113,8 @@
     angular.module('shared')
         .component('barChart', {
             bindings: {
-                data: '<'
+                data: '<',
+                yUnit: '@'
             },
             controller: BarChartController
         })
