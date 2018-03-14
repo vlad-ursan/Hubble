@@ -1,6 +1,11 @@
 <md-toolbar>
     <div class="md-toolbar-tools">
-        <h1 ui-sref="main">Hubble</h1>
+        <h1 ui-sref="main">Hubble
+            <span ng-if="$ctrl.state.current.name !== 'main'">
+                <md-icon class="material-icons">keyboard_arrow_right</md-icon>
+                {{$ctrl.state.current.name | snakeToHuman}}
+            </span>
+        </h1>
         <span flex=""></span>
         <md-button class="md-icon-button" ng-click="$ctrl.openSideNav()">
             <md-icon class="material-icons">menu</md-icon>

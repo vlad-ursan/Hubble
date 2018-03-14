@@ -8,12 +8,15 @@
 (function (angular) {
     'use strict';
 
-    function ToolbarController($mdSidenav) {
+    function ToolbarController($state, $mdSidenav) {
         var ctrl = this;
+
+        ctrl.state = $state;
 
         ctrl.openSideNav = function () {
             $mdSidenav('right').open();
         }
+
     }
 
     angular.module('app')
