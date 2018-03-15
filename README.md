@@ -22,3 +22,4 @@ The application is a data visualisation tool which provides insight into various
 $ cd Hubble
 $ devd -f index.html ./
 ```
+3. Navigate to localhost:${port_number}
