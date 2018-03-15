@@ -1,4 +1,4 @@
-# DataViz
+# Hubble
 The application is a data visualisation tool which provides insight into various topics such as:
 * Daily Energy generation from Solar Panel PV arrays
 * Council Spending Over £500
