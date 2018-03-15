@@ -1,5 +1,5 @@
 {
-  "name": "dataviz",
+  "name": "hubble",
   "version": "0.0.1",
   "description": "A data visualization application",
   "main": "app.js",
